@@ -1,5 +1,5 @@
 
-use nostr_proto::{ClientMessage, Event, EventKind, PreEvent, PrivateKey, Unixtime};
+use nostr_proto::{ClientMessage, Event, EventKind, Id, PreEvent, PrivateKey, Tag, Unixtime, Url};
 use tungstenite::protocol::Message;
 use zeroize::Zeroize;
 
@@ -16,12 +16,33 @@ fn main() {
 
     let public_key = private_key.public_key();
 
+    /*
+    // Text Note
     let pre_event = PreEvent {
         pubkey: public_key,
         created_at: Unixtime::now().unwrap(),
         kind: EventKind::TextNote,
         tags: vec![],
         content: "Test X7b".to_owned(),
+        ots: None
+    };
+     */
+
+    // Reaction
+    let react_to_id = Id::try_from_hex_string("1e6e8e8393f50f91bf65c52abfec4a6e0de7db522f9f4f79d5f0a42884e3c8e4")
+        .expect("Could not import event Id");
+    let pre_event = PreEvent {
+        pubkey: public_key,
+        created_at: Unixtime::now().unwrap(),
+        kind: EventKind::Reaction,
+        tags: vec![
+            Tag::Event {
+                id: react_to_id,
+                recommended_relay_url: Some(Url("wss://relay.damus.io".to_string())),
+                marker: None
+            }
+        ],
+        content: "+".to_owned(),
         ots: None
     };
 
@@ -41,7 +62,7 @@ fn main() {
         // DOWN "wss://nostr.oxtr.dev",
         //"wss://relay.nostr.info",
         // HANGING "wss://relayer.fiatjaf.com",
-        "wss://nostr.onsats.org",
+        //"wss://nostr.onsats.org",
         "wss://relay.damus.io"
     ];
 
