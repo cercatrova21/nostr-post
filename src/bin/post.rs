@@ -17,22 +17,26 @@ fn main() {
     let public_key = private_key.public_key();
 
     // Text Note
-    let pubkey = PublicKey::try_from_hex_string("32e1827635450ebb3c5a7d12c1f8e7b2b514439ac10a67eef3d9fd9c5c68e245")
-        .expect("Could not import public key");
+    /*
+//    let pubkey = PublicKey::try_from_hex_string("32e1827635450ebb3c5a7d12c1f8e7b2b514439ac10a67eef3d9fd9c5c68e245")
+//        .expect("Could not import public key");
     let pre_event = PreEvent {
         pubkey: public_key,
         created_at: Unixtime::now().unwrap(),
         kind: EventKind::TextNote,
-        tags: vec![
+        tags: vec![],
+        /*
             Tag::Pubkey {
                 pubkey,
                 recommended_relay_url: Some(Url("wss://relay.damus.io".to_string())),
                 petname: Some("jb55".to_owned()),
             }
         ],
-        content: "Hey #[0], today I tried liking a post twice and iOS damus only bumped the hearts up one time. Nice work. (My client bumped it up twice)".to_owned(),
+        */
+        content: "Vodka martini, shaken, nostr".to_owned(),
         ots: None
     };
+     */
 
     // Reply
     /*
@@ -54,9 +58,8 @@ fn main() {
     };
      */
 
-    /*
     // Reaction
-    let react_to_id = Id::try_from_hex_string("ca8537625e94a4095051469a43cefa6431107ab259bbdbb23d764058f2cbc77d")
+    let react_to_id = Id::try_from_hex_string("09e253bd8b614720c1c099c7d6bb046cb1f8d519ab3602d1f6785da1e6f9874e")
         .expect("Could not import event Id");
     let pre_event = PreEvent {
         pubkey: public_key,
@@ -72,7 +75,6 @@ fn main() {
         content: "+".to_owned(),
         ots: None
     };
-     */
 
     let event = Event::new(pre_event, private_key).expect("Could not create event");
 
