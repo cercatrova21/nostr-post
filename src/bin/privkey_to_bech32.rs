@@ -1,5 +1,5 @@
 
-use nostr_proto::PrivateKey;
+use nostr_types::PrivateKey;
 use zeroize::Zeroize;
 
 // The zeroize in here is really silly because we print it.

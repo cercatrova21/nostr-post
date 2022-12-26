@@ -1,14 +1,14 @@
 
-use nostr_proto::{ClientMessage, Event, EventKind, Id, Metadata, PreEvent, PrivateKey, PublicKey, Tag, Unixtime, Url};
+use nostr_types::{ClientMessage, EncryptedPrivateKey, Event, EventKind, Id, Metadata, PreEvent, PrivateKey, PublicKey, Tag, Unixtime, Url};
 use tungstenite::protocol::Message;
 use zeroize::Zeroize;
 
 fn main() {
-    let encrypted_private_key = "b1l/OWdYnR4fmbKYAqOJNO+efo2o4LeRhySKIyRDVIYBcYQ0jxO43IqbcZVDonTLD3KR/Tm/d34PqhzlhBnupg==";
+    let encrypted_private_key = EncryptedPrivateKey("b1l/OWdYnR4fmbKYAqOJNO+efo2o4LeRhySKIyRDVIYBcYQ0jxO43IqbcZVDonTLD3KR/Tm/d34PqhzlhBnupg==".to_owned());
 
     let private_key = {
         let mut password = rpassword::prompt_password("Password: ").unwrap();
-        let private_key = PrivateKey::import_encrypted(encrypted_private_key, &password)
+        let private_key = PrivateKey::import_encrypted(&encrypted_private_key, &password)
             .expect("Could not import private key hex string");
         password.zeroize();
         private_key
@@ -18,9 +18,13 @@ fn main() {
 
     let metadata = Metadata {
         name: Some("Michael Dilger".to_string()),
-        about: Some("Author of Gossip client: https://github.com/mikedilger/gossip".to_string()),
+        about: Some("Author of Gossip client: https://github.com/mikedilger/gossip
+Author of nostr-types rust library: https://crates.io/crates/nostr-types
+New Zealander ex-Californian (UC Davis, Sun Microsystems). Programming since 1979.
+".to_string()),
         picture: Some("https://avatars.githubusercontent.com/u/1669069".to_string()),
         nip05: Some("_@mikedilger.com".to_string()),
+        lud16: Some("lnurl1dp68gurn8ghj7ampd3kx2ar0veekzar0wd5xjtnrdakj7tnhv4kxctttdehhwm30d3h82unvw qhkgetrv4h8gcn4dccnxv563ep".to_string()),
     };
 
     let pre_event = PreEvent {

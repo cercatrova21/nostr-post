@@ -398,7 +398,7 @@ version = "0.1.0"
 dependencies = [
  "base64",
  "http",
- "nostr-proto",
+ "nostr-types",
  "rand",
  "rpassword",
  "serde",
@@ -408,9 +408,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "nostr-proto"
-version = "0.1.0"
-source = "git+https://github.com/mikedilger/nostr-proto?branch=master#17fd22168fc3ec861cb7e1e3027bd04ca8aeb8b7"
+name = "nostr-types"
+version = "0.2.0-unstable"
+source = "git+https://github.com/mikedilger/nostr-types?branch=master#7ae46c8eaf4b20fedba5f51f7d58ea506b7d3874"
 dependencies = [
  "aes",
  "base64",
@@ -419,6 +419,7 @@ dependencies = [
  "derive_more",
  "hex",
  "hmac",
+ "http",
  "k256",
  "pbkdf2",
  "rand_core",

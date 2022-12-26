@@ -1,5 +1,5 @@
 
-use nostr_proto::{Event, EventKind, PreEvent, PrivateKey, Unixtime};
+use nostr_types::{Event, EventKind, PreEvent, PrivateKey, Unixtime};
 use zeroize::Zeroize;
 
 // Turn a hex private key into an encrypted private key

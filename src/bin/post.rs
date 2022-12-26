@@ -1,14 +1,14 @@
 
-use nostr_proto::{ClientMessage, Event, EventKind, Id, PreEvent, PrivateKey, PublicKey, Tag, Unixtime, Url};
+use nostr_types::{ClientMessage, EncryptedPrivateKey, Event, EventKind, Id, PreEvent, PrivateKey, Tag, Unixtime, Url};
 use tungstenite::protocol::Message;
 use zeroize::Zeroize;
 
 fn main() {
-    let encrypted_private_key = "b1l/OWdYnR4fmbKYAqOJNO+efo2o4LeRhySKIyRDVIYBcYQ0jxO43IqbcZVDonTLD3KR/Tm/d34PqhzlhBnupg==";
+    let encrypted_private_key = EncryptedPrivateKey("b1l/OWdYnR4fmbKYAqOJNO+efo2o4LeRhySKIyRDVIYBcYQ0jxO43IqbcZVDonTLD3KR/Tm/d34PqhzlhBnupg==".to_owned());
 
     let private_key = {
         let mut password = rpassword::prompt_password("Password: ").unwrap();
-        let private_key = PrivateKey::import_encrypted(encrypted_private_key, &password)
+        let private_key = PrivateKey::import_encrypted(&encrypted_private_key, &password)
             .expect("Could not import private key hex string");
         password.zeroize();
         private_key

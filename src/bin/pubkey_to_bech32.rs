@@ -1,5 +1,5 @@
 
-use nostr_proto::PublicKey;
+use nostr_types::PublicKey;
 
 fn main() {
     let hex = rpassword::prompt_password("Public key hex: ").unwrap();

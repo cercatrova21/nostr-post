@@ -1,5 +1,5 @@
 
-use nostr_proto::{PublicKey, PrivateKey};
+use nostr_types::{PublicKey, PrivateKey};
 
 fn main() {
     let bech32 = rpassword::prompt_password("bech32: ").unwrap();
