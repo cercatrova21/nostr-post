@@ -36,7 +36,7 @@ New Zealander ex-Californian (UC Davis, Sun Microsystems). Programming since 197
         ots: None
     };
 
-    let event = Event::new(pre_event, private_key).expect("Could not create event");
+    let event = Event::new(pre_event, &private_key).expect("Could not create event");
 
     let client_message = ClientMessage::Event(Box::new(event));
 
