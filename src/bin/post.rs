@@ -17,7 +17,6 @@ fn main() {
     let public_key = private_key.public_key();
 
     // Text Note
-    /*
 //    let pubkey = PublicKey::try_from_hex_string("32e1827635450ebb3c5a7d12c1f8e7b2b514439ac10a67eef3d9fd9c5c68e245")
 //        .expect("Could not import public key");
     let pre_event = PreEvent {
@@ -33,10 +32,9 @@ fn main() {
             }
         ],
         */
-        content: "Vodka martini, shaken, nostr".to_owned(),
+        content: "Testing proof of work".to_owned(),
         ots: None
     };
-     */
 
     // Reply
     /*
@@ -59,6 +57,7 @@ fn main() {
      */
 
     // Reaction
+    /*
     let react_to_id = Id::try_from_hex_string("09e253bd8b614720c1c099c7d6bb046cb1f8d519ab3602d1f6785da1e6f9874e")
         .expect("Could not import event Id");
     let pre_event = PreEvent {
@@ -75,8 +74,9 @@ fn main() {
         content: "+".to_owned(),
         ots: None
     };
+     */
 
-    let event = Event::new(pre_event, &private_key).expect("Could not create event");
+    let event = Event::new_with_pow(pre_event, &private_key, 24).expect("Could not create event");
 
     let client_message = ClientMessage::Event(Box::new(event));
 

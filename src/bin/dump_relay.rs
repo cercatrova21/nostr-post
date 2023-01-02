@@ -1,9 +1,9 @@
 
-use nostr_types::{ClientMessage, Filters, RelayMessage, SubscriptionId};
+use nostr_types::{ClientMessage, Filter, RelayMessage, SubscriptionId};
 use tungstenite::protocol::Message;
 
 fn main() {
-    let filter = Filters::new();
+    let filter = Filter::new();
     let message = ClientMessage::Req(SubscriptionId("dump".to_owned()), vec![filter]);
     let wire = serde_json::to_string(&message)
         .expect("Could not serialize message");
