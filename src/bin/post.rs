@@ -88,6 +88,8 @@ fn main() {
     let relay_urls = [
         // monlovesmango:
         "wss://nostr.mikedilger.com",
+        // cercatrova:
+        "wss://nostr.swiss-enigma.ch",
         "wss://nostr-pub.wellorder.net",
         "wss://nostr-relay.wlvs.space",
         // DOWN "wss://nostr.oxtr.dev",
